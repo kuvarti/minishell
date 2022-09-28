@@ -1,1 +1,1 @@
-aeryilma, aozsayar
+aeryilma, aozsayar.
