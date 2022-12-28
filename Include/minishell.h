@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aeryilma <aeryilma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 06:01:25 by aozsayar          #+#    #+#             */
-/*   Updated: 2022/12/28 07:54:13 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/29 00:29:04 by aeryilma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_core(char **env);
 
 void	free_for_loop(void);
 void	free_core(void);
+char	*input_cmd(void);
 
 void	update_history(char *cmd);
 void	update_exec_output(void);
