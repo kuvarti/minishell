@@ -1,68 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aozsayar <aozsayar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/28 06:03:07 by aozsayar          #+#    #+#             */
+/*   Updated: 2022/12/28 06:03:07 by aozsayar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSER_H
-#define PARSER_H
+# define PARSER_H
 
-#include <unistd.h>
-#include "lexer.h"
+# include "tables.h"
+# include "macros.h"
 
-#define Stdin 0
-#define Stdout 1
-#define Stderr 2
+//MAIN
+void		parser(void);
 
-#define NO_ERR 0
-#define NO_FILE 1
-#define EMPTY_FILE 2
-#define NO_ACCESS 3
-#define ARG_META 4
-
-typedef struct s_filelist
-{
-	char				*metachar;
-	char				*filename;
-	int					fd;
-	struct s_filelist	*next;
-} t_filelist;
-
-typedef struct s_cmdlist
-{
-	int					infile;
-	int					outfile;
-	int					pid;
-	char				*cmd;
-	char				**path;
-	t_filelist			*files;
-	struct s_cmdlist	*next;
-} t_cmdlist;
-
-void		parser();
-
+//CREATECMDTABLE
 void		create_cmdtable(t_lexlist *lex_table);
-void		create_cmdtable_nodes(int	count);
 void		fill_cmdtable_node(t_cmdlist *node);
+void		create_cmdtable_nodes(int count);
 
-void		fill_cmdtable();
+//FILLTABLE
+void		fill_cmdtable(void);
 void		fill_cmdnode(t_cmdlist *node, t_lexlist **lex_list);
 
 char		**create_path(t_lexlist *lex_list);
 
 int			create_new_filelist(t_cmdlist *node, t_lexlist **lex_list);
-t_filelist	*add_filelist(t_filelist **file_list, char * filename, char *meta);
+t_filelist	*add_filelist(t_filelist **file_list, char *filename, char *meta);
 
+//CREATEFILES
 void		create_files(t_cmdlist *node);
-
-void		create_outfile (t_cmdlist *node, t_filelist *file);
-
-void		create_infile (t_cmdlist *node, t_filelist *file);
 
 void		run_heradocs(t_cmdlist *node);
 void		read_heradoc(char *eof);
 char		*get_heradoc_values(char *eof);
-void		open_heradoc_file(char	*create_mode);
-void		close_heradoc_file();
 
+void		close_heradoc_file(void);
+void		open_heradoc_file(char	*create_mode);
+
+void		create_infile(t_cmdlist *node, t_filelist *file);
+
+void		create_outfile(t_cmdlist *node, t_filelist *file);
+
+int			check_directory_error(char *file_name);
 int			raise_file_error(t_filelist *file, int *file_output);
 
-void		free_parser();
+//FREEPARSER
+void		free_parser(void);
 void		free_filelist(t_filelist *files);
 
-void		print_parser();
+void		print_files(t_filelist *temp_filelist);
+void		print_parser(void);
+
 #endif

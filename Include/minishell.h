@@ -1,36 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/28 06:01:25 by aozsayar          #+#    #+#             */
+/*   Updated: 2022/12/28 07:54:13 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
-#define MINISHELL_H
+# define MINISHELL_H
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include "lexer.h"
-#include "utilits.h"
-#include "expander.h"
-#include "parser.h"
-#include "executer.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/wait.h>
+# include <signal.h>
+# include "macros.h"
+# include "tables.h"
+# include "utilits.h"
+# include "lexer.h"
+# include "expander.h"
+# include "parser.h"
+# include "executer.h"
 
-typedef struct s_core
-{
-	int			exec_output;
-	int			old_exec_output;
-	int			heradoc_fd;
-	char		*cmd;
-	char		**metachars;
-	t_env		*env_table;
-	t_lexlist	*lex_table;
-	t_cmdlist	*cmd_table;
-	t_title		title;
-} t_core;
+t_core	g_core;
 
-t_core	core;
-
+//	MAIN
 void	init_core(char **env);
-void	free_for_loop();
-void	free_core();
+
+void	free_for_loop(void);
+void	free_core(void);
+
 void	update_history(char *cmd);
+void	update_exec_output(void);
+void	sig_handler(int signum);
 
 #endif
-

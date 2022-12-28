@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   Expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aozsayar <aozsayar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 02:08:52 by aozsayar          #+#    #+#             */
-/*   Updated: 2022/12/28 02:08:52 by aozsayar         ###   ########.fr       */
+/*   Created: 2022/12/28 02:51:12 by aozsayar          #+#    #+#             */
+/*   Updated: 2022/12/28 02:51:12 by aozsayar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../../Include/minishell.h"
 
-void	init_core(char **env)
+void	expander(void)
 {
-	fill_envs(env);
-	set_metachars();
-	set_title();
-	g_core.heradoc_fd = 0;
-	g_core.exec_output = 0;
+	if (g_core.exec_output == 2)
+		return ;
+	expand_values_from_lexlist();
+	clear_void_contents();
 }

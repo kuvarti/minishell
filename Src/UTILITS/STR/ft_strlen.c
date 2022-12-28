@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aozsayar <aozsayar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 02:08:52 by aozsayar          #+#    #+#             */
-/*   Updated: 2022/12/28 02:08:52 by aozsayar         ###   ########.fr       */
+/*   Created: 2022/12/28 05:25:24 by aozsayar          #+#    #+#             */
+/*   Updated: 2022/12/28 05:25:24 by aozsayar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_core(char **env)
+/*
+	Karakter dizisinin boyutunu alir.
+*/
+
+size_t	ft_strlen(char *ptr)
 {
-	fill_envs(env);
-	set_metachars();
-	set_title();
-	g_core.heradoc_fd = 0;
-	g_core.exec_output = 0;
+	size_t	count;
+
+	count = 0;
+	while (ptr && *(ptr++))
+		count++;
+	return (count);
 }

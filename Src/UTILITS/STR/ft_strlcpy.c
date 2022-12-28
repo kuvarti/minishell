@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aozsayar <aozsayar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 02:08:52 by aozsayar          #+#    #+#             */
-/*   Updated: 2022/12/28 02:08:52 by aozsayar         ###   ########.fr       */
+/*   Created: 2022/12/28 05:25:14 by aozsayar          #+#    #+#             */
+/*   Updated: 2022/12/28 05:25:14 by aozsayar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_core(char **env)
+char	*ft_strlcpy(char *dst, char *src, int count)
 {
-	fill_envs(env);
-	set_metachars();
-	set_title();
-	g_core.heradoc_fd = 0;
-	g_core.exec_output = 0;
+	char	*ptr;
+	char	*return_ptr;
+	int		index;
+
+	if (!src || !count)
+		return (NULL);
+	ptr = (char *)malloc(sizeof(char) * (ft_strlen(dst) + count + 1));
+	return_ptr = ptr;
+	index = -1;
+	while (dst && *dst)
+		*(ptr++) = *(dst++);
+	while (++index < count && src && *src)
+		*(ptr++) = *(src++);
+	*ptr = 0;
+	return (return_ptr);
 }

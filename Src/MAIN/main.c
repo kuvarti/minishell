@@ -1,28 +1,44 @@
-#include "../../Include/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aeryilma <aeryilma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/28 02:08:09 by aozsayar          #+#    #+#             */
+/*   Updated: 2022/12/28 21:26:58 by aeryilma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	update_exec_output()
+#include "minishell.h"
+
+void	sig_handler(int signum)
 {
-	core.exec_output = core.exec_output ^ core.old_exec_output;
-	core.old_exec_output = core.exec_output ^ core.old_exec_output;
-	core.exec_output = core.exec_output ^ core.old_exec_output;
-	core.exec_output = 0;
+	if (signum == SIGINT)
+	{
+		write(1, "\n", 1);
+		rl_on_new_line();
+		rl_redisplay();
+		exit(1);
+	}
 }
 
 int	main(int argc, char **argv, char **env)
 {
+	(void)argc;
+	(void)argv;
 	init_core(env);
+	signal(SIGINT, &sig_handler);
 	while (1)
 	{
-		core.cmd = readline(core.title.full_title);
+		g_core.cmd = readline(g_core.title.full_title);
 		update_exec_output();
 		lexer();
 		//print_lexer();
 		expander();
-		//print_expander();
 		parser();
-		//print_parser();
 		executer();
-		update_history(core.cmd);
+		update_history(g_core.cmd);
 		free_for_loop();
 	}
 	free_core();

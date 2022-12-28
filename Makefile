@@ -1,6 +1,6 @@
 NAME = minishell
 
-CFLAGS = $(INCLUDE)
+CFLAGS = $(INCLUDE) -Wall -Werror -Wextra
 INCLUDE = -IInclude/
 CC = gcc
 
