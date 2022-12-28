@@ -6,14 +6,14 @@
 #    By: aeryilma <aeryilma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 01:30:29 by aeryilma          #+#    #+#              #
-#    Updated: 2022/12/29 01:30:45 by aeryilma         ###   ########.fr        #
+#    Updated: 2022/12/29 02:24:07 by aeryilma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CFLAGS = $(INCLUDE) -Wall -Werror -Wextra
-INCLUDE = -IInclude/
+INCLUDE = -IInclude/ -I~/goinfre/.brew/opt/readline/include
 CC = gcc
 
 SRC = $(shell find src -name "*.c")
@@ -31,7 +31,7 @@ all: outfolder $(NAME)
 	@echo "Done"
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -lreadline -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -lreadline -L ~/goinfre/.brew/opt/readline/lib -o $(NAME)
 
 outfolder:
 	@echo "Building Minishell"
