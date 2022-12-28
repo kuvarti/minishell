@@ -12,14 +12,16 @@
 
 #include "minishell.h"
 
-int	skip_heradoc(t_lexlist **lexer, t_lexlist *stop_list, int *flag)
+int	skip_heradoc(t_lexlist **lex, t_lexlist **temp, t_lexlist *stop, int *flag)
 {
-	if (stop_list == *lexer)
+	if (stop == *lex)
 		*flag |= 1;
-	if ((*lexer)->type == SIGN_DOUBLE_LESS && !*flag)
+	if ((*lex)->type == SIGN_DOUBLE_LESS && !*flag)
 	{
-		if ((*lexer)->next && (*lexer)->next != stop_list)
-			*lexer = (*lexer)->next;
+		if ((*lex) && (*lex) != stop)
+			*lex = (*lex)->next;
+		*temp = *lex;
+		*lex = (*lex)->next;
 		return (1);
 	}
 	return (0);
@@ -32,22 +34,24 @@ void	free_lexer_without_heradoc(t_lexlist *stop_list)
 	int			flag;
 
 	lexer = g_core.lex_table;
-	temp_lexer = g_core.lex_table;
 	flag = 0;
 	while (lexer)
 	{
-		if (skip_heradoc(&lexer, stop_list, &flag))
-		{
-			temp_lexer = lexer;
-			lexer = lexer->next;
+		if (skip_heradoc(&lexer, &temp_lexer, stop_list, &flag))
 			continue ;
-		}
-		if (lexer == g_core.lex_table)
+		if (g_core.lex_table == lexer)
+		{
 			g_core.lex_table = g_core.lex_table->next;
-		temp_lexer->next = lexer->next;
+			temp_lexer = g_core.lex_table;
+		}
+		else
+			temp_lexer->next = lexer->next;
 		free(lexer->content);
 		free(lexer);
-		lexer = temp_lexer->next;
+		if (g_core.lex_table == temp_lexer)
+			lexer = temp_lexer;
+		else
+			lexer = temp_lexer->next;
 	}
 }
 

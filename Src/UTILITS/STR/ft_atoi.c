@@ -1,44 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeryilma <aeryilma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 02:08:09 by aozsayar          #+#    #+#             */
-/*   Updated: 2022/12/29 00:14:03 by aeryilma         ###   ########.fr       */
+/*   Created: 2022/12/28 08:36:03 by aozsayar          #+#    #+#             */
+/*   Updated: 2022/12/29 00:13:32 by aeryilma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	sig_handler(int signum)
+int	ft_atoi(const char *str)
 {
-	if (signum == SIGINT)
-	{
-		write(1, "\n", 1);
-		rl_on_new_line();
-		rl_redisplay();
-		exit(1);
-	}
-}
+	int	i;
+	int	a;
+	int	tmp;
 
-int	main(int argc, char **argv, char **env)
-{
-	(void)argc;
-	(void)argv;
-	init_core(env);
-	signal(SIGINT, &sig_handler);
-	while (1)
+	i = 0;
+	a = 1;
+	tmp = 0;
+	while (str[i] == ' ' || (str[i] <= '\r' && str[i] >= '\t'))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		g_core.cmd = readline(g_core.title.full_title);
-		update_exec_output();
-		lexer();
-		expander();
-		parser();
-		executer();
-		update_history(g_core.cmd);
-		free_for_loop();
+		if (str[i] == '-')
+			a *= -1;
+		i++;
 	}
-	free_core();
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		tmp = tmp * 10 + str[i] - 48;
+		i++;
+	}
+	return (tmp * a);
 }

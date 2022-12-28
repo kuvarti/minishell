@@ -50,7 +50,8 @@ void	delete_env(char *name);
 
 void	run_env(t_cmdlist *cmd_node);
 
-void	run_exit(void);
+void	run_exit(t_cmdlist *cmd_node);
+int		is_all_numeric(char *text);
 
 void	run_export(t_cmdlist *cmd_node);
 void	single_export_arg(t_cmdlist *cmd_node);

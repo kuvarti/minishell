@@ -36,6 +36,8 @@ char	*compare_metachars(char *cmd_line);
 void	set_metachars(void);
 
 //STR
+int		ft_atoi(const char *str);
+
 char	*ft_itoa(int number);
 int		get_numbercount(int number);
 

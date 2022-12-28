@@ -48,5 +48,5 @@ void	run_builtin(t_cmdlist *cmd_node, int builtin, int *fd, int fd_index)
 	else if (builtin == ENV)
 		run_env(cmd_node);
 	else if (builtin == EXIT)
-		run_exit();
+		run_exit(cmd_node);
 }
