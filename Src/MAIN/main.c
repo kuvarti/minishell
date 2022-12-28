@@ -6,7 +6,7 @@
 /*   By: aeryilma <aeryilma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 02:08:09 by aozsayar          #+#    #+#             */
-/*   Updated: 2022/12/29 00:28:49 by aeryilma         ###   ########.fr       */
+/*   Updated: 2022/12/29 00:43:40 by aeryilma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv, char **env)
 	signal(SIGINT, &sig_handler);
 	while (1)
 	{
-		g_core.cmd = input_cmd();
+		g_core.cmd = readline(g_core.title.full_title);
 		update_exec_output();
 		lexer();
 		expander();

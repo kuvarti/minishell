@@ -1,14 +1,26 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aeryilma <aeryilma@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/12/29 01:30:29 by aeryilma          #+#    #+#              #
+#    Updated: 2022/12/29 01:30:45 by aeryilma         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = minishell
 
 CFLAGS = $(INCLUDE) -Wall -Werror -Wextra
 INCLUDE = -IInclude/
 CC = gcc
 
-SRC = $(shell find Src -name "*.c")
+SRC = $(shell find src -name "*.c")
 SRCDIR = $(sort $(dir $(SRC)))
 SRCFLS = $(notdir $(SRC))
 
-OUTPREFIX = objects/
+OUTPREFIX = builds/
 OBJ = $(addprefix $(OUTPREFIX), $(SRCFLS:.c=.o))
 
 vpath %.c $(SRCDIR)
