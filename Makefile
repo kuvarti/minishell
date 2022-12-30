@@ -6,7 +6,7 @@
 #    By: aeryilma <aeryilma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 01:30:29 by aeryilma          #+#    #+#              #
-#    Updated: 2022/12/30 18:02:52 by aeryilma         ###   ########.fr        #
+#    Updated: 2022/12/30 19:03:28 by aeryilma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ all: outfolder $(NAME)
 	@echo "Done"
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -lreadline -L ~/goinfre/.brew/opt/readline/lib -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -lreadline -L ~/goinfre/.brew/opt/readline/lib -o $(NAME)
 
 outfolder:
 	@echo "Building Minishell"
