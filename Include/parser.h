@@ -37,7 +37,9 @@ t_filelist	*add_filelist(t_filelist **file_list, char *filename, char *meta);
 void		create_files(t_cmdlist *node);
 
 void		run_heradocs(t_cmdlist *node);
-void		read_heradoc(char *eof);
+int			read_heradoc(t_cmdlist *node, char *eof);
+void		set_heradoc_value(t_cmdlist *node, int *fd);
+void		fill_heradoc(char *eof, int *fd);
 char		*get_heradoc_values(char *eof);
 
 void		close_heradoc_file(void);

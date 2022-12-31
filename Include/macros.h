@@ -43,5 +43,7 @@
 # define UNSET 5
 # define ENV 6
 # define EXIT 7
+# define SIGNAL_C 32
+# define HERADOC -2
 
 #endif

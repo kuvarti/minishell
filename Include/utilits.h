@@ -43,7 +43,7 @@ int		get_numbercount(int number);
 
 char	*ft_strdup(char *ptr);
 
-char	*ft_strlcpy(char *dst, char *src, int count);
+char	*ft_strpcpy(char *dst, char *src, int count);
 
 size_t	ft_strlen(char *ptr);
 

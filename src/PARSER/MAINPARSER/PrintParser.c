@@ -41,6 +41,8 @@ void	print_parser(void)
 		printf("\nCMD: %s\n", temp_cmdlist->cmd);
 		printf("infile: %d\n", temp_cmdlist->infile);
 		printf("outfile: %d\n", temp_cmdlist->outfile);
+		if (temp_cmdlist->heradoc_values)
+			printf("heradoc values: %s\n", temp_cmdlist->heradoc_values);
 		printf("pid: %d\n", temp_cmdlist->pid);
 		printf("~files~\n");
 		print_files(temp_cmdlist->files);

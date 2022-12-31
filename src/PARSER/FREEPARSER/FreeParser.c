@@ -25,8 +25,11 @@ void	free_parser(void)
 		free_filelist(temp_parser->files);
 		if (temp_parser->path)
 			free(temp_parser->path);
+		if (temp_parser->heradoc_values)
+			free(temp_parser->heradoc_values);
 		free(temp_parser);
 	}
+	g_core.cmd_table = NULL;
 }
 
 void	free_filelist(t_filelist *files)
@@ -37,7 +40,7 @@ void	free_filelist(t_filelist *files)
 	{
 		temp_files = files;
 		files = files->next;
-		if (temp_files->fd > SSTDERR && temp_files->fd != g_core.heradoc_fd)
+		if (temp_files->fd > SSTDERR)
 			close(temp_files->fd);
 		free(temp_files);
 	}

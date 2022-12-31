@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../Include/minishell.h"
+#include "minishell.h"
 
 void	print_expander(void)
 {

@@ -36,7 +36,11 @@ void		syntax_check(void);
 int			syntax_error_check(t_lexlist *lex_list);
 
 int			pipe_error_check(t_lexlist *lex_list);
-int			get_unclosed_pipe_arg(t_lexlist *lex_list);
+int			run_miss_arg(t_lexlist *lex_list);
+
+char		*get_missing_arg(void);
+int			read_missing_arg(int *fd);
+void		read_missing_arg_value(int *fd);
 int			control_valid_arg(char *ptr);
 
 int			file_error_check(t_lexlist *lex_list);

@@ -19,7 +19,7 @@ void	create_files(t_cmdlist *node)
 	if (!node)
 		return ;
 	run_heradocs(node);
-	if (g_core.exec_output)
+	if (g_core.exec_output || !node)
 		return ;
 	while (node)
 	{

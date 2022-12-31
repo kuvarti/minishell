@@ -6,15 +6,15 @@
 #    By: aeryilma <aeryilma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 01:30:29 by aeryilma          #+#    #+#              #
-#    Updated: 2022/12/30 19:03:28 by aeryilma         ###   ########.fr        #
+#    Updated: 2022/12/29 01:30:45 by aeryilma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = gcc
 CFLAGS = $(INCLUDE) -Wall -Werror -Wextra
-INCLUDE = -IInclude/ -I~/goinfre/.brew/opt/readline/include
+INCLUDE = -IInclude/
+CC = gcc
 
 ifeq ($(shell uname), Linux)
 	CFLAGS = $(INCLUDE) -Wall -Werror -Wextra -fcommon
@@ -35,7 +35,7 @@ all: outfolder $(NAME)
 	@echo "Done"
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -lreadline -L ~/goinfre/.brew/opt/readline/lib -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -lreadline -o $(NAME)
 
 outfolder:
 	@echo "Building Minishell"
@@ -52,12 +52,13 @@ fclean: clean
 	@if [ ! -d $(NAME) ]; then rm -rf $(NAME); fi
 	@echo "Done"
 
+re: fclean seperate all
+
 seperate:
 	@echo "-----------------"
 
-re: fclean seperate all
-
-.PHONY: all clean fclean re seperate
+.PHONY:
+	all clean fclean re seperate
 
 check:
 	@echo "SRC : "

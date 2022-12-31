@@ -25,7 +25,10 @@ void	syntax_check(void)
 			break ;
 		else if (!syntax_error)
 			continue ;
-		lex_list = lex_list->next;
+		if (g_core.lex_table)
+			lex_list = lex_list->next;
+		else
+			lex_list = NULL;
 	}
 }
 

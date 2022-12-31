@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char	*ft_strlcpy(char *dst, char *src, int count)
+char	*ft_strpcpy(char *dst, char *src, int count)
 {
 	char	*ptr;
 	char	*return_ptr;

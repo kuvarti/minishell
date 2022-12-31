@@ -1,0 +1,22 @@
+{
+	"files.associations": {
+		"array": "cpp",
+		"*.tcc": "cpp",
+		"deque": "cpp",
+		"forward_list": "cpp",
+		"list": "cpp",
+		"string": "cpp",
+		"vector": "cpp",
+		"optional": "cpp",
+		"string_view": "cpp",
+		"algorithm": "cpp",
+		"istream": "cpp",
+		"limits": "cpp",
+		"numeric": "cpp",
+		"streambuf": "cpp",
+		"functional": "cpp",
+		"valarray": "cpp",
+		"variant": "cpp",
+		"minishell.h": "c"
+	}
+}

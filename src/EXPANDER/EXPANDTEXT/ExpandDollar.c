@@ -37,7 +37,7 @@ void	double_dollar(char **dst, char **src)
 {
 	char	*line;
 
-	line = ft_itoa(getpid());
+	line = ft_itoa(g_core.main_pid);
 	own_strjoin(dst, line);
 	free(line);
 	(*src)++;
@@ -66,7 +66,7 @@ void	expand_dollar_value(char **dst, char **src)
 		count++;
 		ptr++;
 	}
-	ptr = ft_strlcpy(NULL, (*src) + 1, count);
+	ptr = ft_strpcpy(NULL, (*src) + 1, count);
 	expand_envs(dst, ptr);
 	free(ptr);
 	*src += count;
