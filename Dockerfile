@@ -1,12 +1,12 @@
-FROM ubuntu
+FROM alpine
 
-RUN apt-get update \
-	&& apt-get install make gcc libreadline6-dev -y \
+RUN apk update \
+	&& apk add gcc make readline-dev linux-headers libc-dev \
 	&& mkdir /opt/minishell
 
 COPY . /opt/minishell
-WORKDIR /opt/minishell
-RUN make \
-	&& make clean
 
-CMD ["./minishell"];
+WORKDIR /opt/minishell
+RUN mkdir /root/home \
+	&& make
+CMD ["./minishell"]
