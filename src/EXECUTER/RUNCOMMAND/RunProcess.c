@@ -16,6 +16,8 @@ void	run_process(t_cmdlist *cmd_list, int *fd, int fd_index)
 {
 	if (cmd_list->infile != SSTDERR && cmd_list->outfile != SSTDERR)
 		exec_command(cmd_list, fd, fd_index);
+	else
+		clear_pipe(fd);
 	free_for_loop();
 	free_core();
 	exit(g_core.exec_output);

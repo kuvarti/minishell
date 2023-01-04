@@ -59,7 +59,6 @@ typedef struct s_core
 	int			exec_output;
 	int			old_exec_output;
 	int			heradoc_fd;
-	int			current_signal;
 	int			is_read_arg;
 	char		*cmd;
 	char		**metachars;

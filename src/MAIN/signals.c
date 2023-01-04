@@ -15,7 +15,6 @@
 void	sig_handler(int signum)
 {
 	(void)signum;
-	g_core.current_signal = SIGNAL_C;
 	if (signal_in_reading())
 		return ;
 	if (signal_while_cmd_works())
@@ -72,7 +71,8 @@ void	exit_signal_check(void)
 {
 	if (!g_core.cmd)
 	{
-		write(2, "\nExit\n", 6);
+		write(1, "Exit\n", 6);
+		free_core();
 		exit(EXIT_SUCCESS);
 	}
 }

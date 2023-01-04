@@ -14,11 +14,10 @@ NAME = minishell
 
 CFLAGS = $(INCLUDE) -Wall -Werror -Wextra
 INCLUDE = -IInclude/
-CC = gcc
-
-ifeq ($(shell uname), Linux)
-	CFLAGS = $(INCLUDE) -Wall -Werror -Wextra -fcommon
+ifeq ($(shell uname), Darwin)
+INCLUDE = -IInclude/ -I/Users/aeryilma/goinfre/homebrew/Cellar/readline/8.2.1/include
 endif
+CC = gcc
 
 SRC = $(shell find src -name "*.c")
 SRCDIR = $(sort $(dir $(SRC)))
@@ -35,7 +34,12 @@ all: outfolder $(NAME)
 	@echo "Done"
 
 $(NAME): $(OBJ)
+ifeq ($(shell uname), Darwin)
+	@$(CC) $(CFLAGS) $(OBJ) -lreadline -L /Users/aeryilma/goinfre/homebrew/Cellar/readline/8.2.1/lib -o $(NAME)
+endif
+ifeq ($(shell uname), Linux)
 	@$(CC) $(CFLAGS) $(OBJ) -lreadline -o $(NAME)
+endif
 
 outfolder:
 	@echo "Building Minishell"

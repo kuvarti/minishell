@@ -37,6 +37,7 @@ int	read_heradoc(t_cmdlist *node, char *eof)
 {
 	int		pid;
 	int		fd[2];
+	int		return_value;
 
 	pipe(fd);
 	pid = fork();
@@ -44,9 +45,10 @@ int	read_heradoc(t_cmdlist *node, char *eof)
 	if (!pid)
 		fill_heradoc(eof, fd);
 	close(fd[1]);
-	waitpid(pid, 0, 0);
+	waitpid(pid, &return_value, 0);
 	g_core.is_read_arg = 0;
-	if (g_core.current_signal)
+	return_value = WEXITSTATUS(return_value);
+	if (return_value == SIGNAL_C)
 	{
 		close(fd[0]);
 		update_history(g_core.cmd);

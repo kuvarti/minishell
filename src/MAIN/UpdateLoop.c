@@ -15,7 +15,6 @@
 void	update_loop(void)
 {
 	update_exec_output();
-	g_core.current_signal = 0;
 	g_core.is_read_arg = 0;
 }
 

@@ -15,10 +15,9 @@
 void	run_execve(t_cmdlist *cmd_node, int *fd, int fd_index)
 {
 	char	**envlist;
-	int		new_pid;
 
-	new_pid = fork();
-	if (!new_pid)
+	cmd_node->pid = fork();
+	if (!cmd_node->pid)
 	{
 		create_dup(cmd_node, fd, fd_index);
 		envlist = get_env_cpy();
@@ -32,8 +31,8 @@ void	run_execve(t_cmdlist *cmd_node, int *fd, int fd_index)
 			exit(127);
 		}
 	}
-	if (fd && new_pid)
+	if (fd && cmd_node->pid)
 		clear_pipe(fd);
-	waitpid(new_pid, &g_core.exec_output, 0);
+	waitpid(cmd_node->pid, &g_core.exec_output, 0);
 	g_core.exec_output = WEXITSTATUS(g_core.exec_output);
 }

@@ -66,7 +66,6 @@ void	read_missing_arg_value(int *fd)
 		free(ptr);
 		free_for_loop();
 		free_core();
-		g_core.is_read_arg = 0;
 		exit(EXIT_SUCCESS);
 	}
 }
